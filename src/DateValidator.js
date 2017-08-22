@@ -23,7 +23,10 @@ class DateValidator {
     if (!moment(time, 'HH:mm').isValid()) {
       throw new Error('INVALID_PARAMETERS');
     }
-    let isValidTime = moment(time, 'HH:mm').isBetween(moment(this.beginingTime, 'HH:mm'), moment(this.endingTime, 'HH:mm'));
+
+    let timeAfterBegining =  moment(time, 'HH:mm').isSameOrAfter(moment(this.beginingTime, 'HH:mm'));
+    let timeBeforeEnding = moment(time, 'HH:mm').isSameOrBefore(moment(this.endingTime, 'HH:mm'));
+    let isValidTime = timeAfterBegining && timeBeforeEnding;
     return (isValidTime);
   }
 
@@ -47,10 +50,16 @@ class DateValidator {
     if (this.isValidDate(date)) {
       return date;
     }
-    moment(date).hours(moment(this.beginingTime, 'HH:mm').format('HH')).minutes(moment(this.beginingTime, 'HH:mm').format('mm'));
+
     while (!this.isValidDate(date)) {
-    moment(date).add(1, 'days');
+      date = moment(date).add(1, 'days').format();
     }
+
+    let hours = moment(this.beginingTime, 'HH:mm').hours();
+    let minutes = moment(this.beginingTime, 'HH:mm').minutes();
+    date = moment(date).hours(hours).format();
+    date = moment(date).minutes(minutes).format();
+
     return date;
   }
 }
