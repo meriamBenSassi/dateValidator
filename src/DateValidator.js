@@ -1,6 +1,6 @@
-var Holidays = require('date-holidays');
-var moment = require('moment');
-var hd = new Holidays();
+const Holidays = require('date-holidays');
+const moment = require('moment');
+const hd = new Holidays();
 
 class DateValidator {
 
@@ -67,7 +67,7 @@ class DateValidator {
     let isoWeekDay = moment(date).isoWeekday();
 
     if (isoWeekDay === 7 || isoWeekDay === 6) {
-      return true
+      return true;
     }
 
     return false;
