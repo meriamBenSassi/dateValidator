@@ -1,15 +1,21 @@
 {
   "name": "holidays",
   "version": "0.0.0",
+  "description": "Validation of date, taking account of vacations or week end.",
   "private": true,
-  "scripts": {},
+  "scripts": {
+    "test": "./node_modules/.bin/_mocha",
+    "lint": "./node_modules/.bin/eslint ./src/"
+  },
   "dependencies": {
     "date-holidays": "^1.0.1",
+    "global": "^4.3.2",
     "lodash": "^4.17.4",
     "should": "^11.2.1"
   },
   "devDependencies": {
     "mocha": "^3.5.0",
-    "nyc": "^11.1.0"
+    "nyc": "^11.1.0",
+    "eslint": "^4.5.0"
   }
 }
